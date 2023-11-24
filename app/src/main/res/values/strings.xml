@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Agenda</string>
+    <string name="Nom">Name:</string>
+    <string name="Telf">Phone:</string>
+    <string name="Guardar">Save</string>
+    <string name="Borrar">Clear</string>
+    <string name="getTelefon">Get Phone</string>
+    <string name="noNomTlf">Has d\'introduir un nom i un telefon</string>
+    <string name="noNom">Has d\'introduir un nom</string>
+</resources>

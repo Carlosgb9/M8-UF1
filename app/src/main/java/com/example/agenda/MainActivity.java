@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,8 +31,6 @@ import android.widget.Toast;
     }
 
     public void bClearOnClick (View view){
-        //etNom.setHint(getString(R.string.Nom));
-        //etTlf.setHint(getString(R.string.Telf));
         etTlf.setText("");
         etNom.setText("");
     }
@@ -48,9 +47,28 @@ import android.widget.Toast;
         } else if (!nom.isEmpty() && tlf.isEmpty()){
             //popup
             //https://stackoverflow.com/questions/36747369/how-to-show-a-pop-up-in-android-studio-to-confirm-an-order
-        } else {
+        } else if (!nom.isEmpty() && !tlf.isEmpty()) {
             editor.putString(nom, tlf);
+            editor.putString(getString(R.string.nomGuardat), nom);
+            Toast.makeText(this, this.getString(R.string.nomAfegir), Toast.LENGTH_SHORT).show();
+            editor.commit();
         }
+    }
 
+    public void bGetPhoneOnClick (View view){
+        String nom = etNom.getText().toString().trim();
+        String tlf = "";
+        SharedPreferences prefs = getSharedPreferences("cat.institutmarianao.PROJECT_5_PREFS", Context.MODE_PRIVATE);
+        if (!nom.isEmpty() && tlf.isEmpty()){
+            String nomComprovar = prefs.getString(nom, null);
+            //String nomComprovar = prefs.getString((R.string.nomGuardat), null);
+            if (nom.equals(nomComprovar)){
+                etTlf.setText(nom);
+            } else {
+                Toast.makeText(this, this.getString(R.string.nomInvalid), Toast.LENGTH_SHORT).show();
+            }
+        } else if(nom.isEmpty() && tlf.isEmpty()) {
+            Toast.makeText(this, this.getString(R.string.noNom), Toast.LENGTH_SHORT).show();
+        }
     }
 }

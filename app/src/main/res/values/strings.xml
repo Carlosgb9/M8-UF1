@@ -7,7 +7,7 @@
     <string name="getTelefon">Get Phone</string>
     <string name="noNomTlf">Has d\'introduir un nom i un telefon</string>
     <string name="noNom">Has d\'introduir un nom</string>
-    <string name="nomInvalid">Aquest telefon no es troba a l\'agenda</string>
+    <string name="nomInvalid">No hi ha un contacte amb aquest nom</string>
     <string name="nomAfegir">El contacte ha sigut afegir a l\'agenda</string>
     <string name="nomEliminat">El contacte ha sigut eliminat de l\'agenda</string>
     <string name="nomGuardat">s</string>

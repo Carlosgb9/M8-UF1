@@ -60,12 +60,11 @@ import android.widget.Toast;
         String tlf = "";
         SharedPreferences prefs = getSharedPreferences("cat.institutmarianao.PROJECT_5_PREFS", Context.MODE_PRIVATE);
         if (!nom.isEmpty() && tlf.isEmpty()){
-            String nomComprovar = prefs.getString(nom, null);
-            //String nomComprovar = prefs.getString((R.string.nomGuardat), null);
-            if (nom.equals(nomComprovar)){
-                etTlf.setText(nom);
-            } else {
+            String tlfComprovar = prefs.getString(nom, null);
+            if (tlfComprovar == null){
                 Toast.makeText(this, this.getString(R.string.nomInvalid), Toast.LENGTH_SHORT).show();
+            } else {
+                etTlf.setText(tlfComprovar);
             }
         } else if(nom.isEmpty() && tlf.isEmpty()) {
             Toast.makeText(this, this.getString(R.string.noNom), Toast.LENGTH_SHORT).show();

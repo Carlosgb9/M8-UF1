@@ -10,5 +10,4 @@
     <string name="nomInvalid">No hi ha un contacte amb aquest nom</string>
     <string name="nomAfegir">El contacte ha sigut afegir a l\'agenda</string>
     <string name="nomEliminat">El contacte ha sigut eliminat de l\'agenda</string>
-    <string name="nomGuardat">s</string>
 </resources>

@@ -1,8 +1,10 @@
     package com.example.agenda;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
@@ -45,13 +47,11 @@ import android.widget.Toast;
         } else if (nom.isEmpty() && !tlf.isEmpty()){
             Toast.makeText(this, this.getString(R.string.noNom), Toast.LENGTH_SHORT).show();
         } else if (!nom.isEmpty() && tlf.isEmpty()){
-            //popup
-            //https://stackoverflow.com/questions/36747369/how-to-show-a-pop-up-in-android-studio-to-confirm-an-order
+            eliminarContacte();
         } else if (!nom.isEmpty() && !tlf.isEmpty()) {
             editor.putString(nom, tlf);
-            editor.putString(getString(R.string.nomGuardat), nom);
             Toast.makeText(this, this.getString(R.string.nomAfegir), Toast.LENGTH_SHORT).show();
-            editor.commit();
+            editor.apply();
         }
     }
 
@@ -62,7 +62,7 @@ import android.widget.Toast;
         if (!nom.isEmpty() && tlf.isEmpty()){
             String tlfComprovar = prefs.getString(nom, null);
             if (tlfComprovar == null){
-                Toast.makeText(this, this.getString(R.string.nomInvalid), Toast.LENGTH_SHORT).show();
+                etTlf.setError(getString(R.string.nomInvalid));
             } else {
                 etTlf.setText(tlfComprovar);
             }
@@ -70,4 +70,25 @@ import android.widget.Toast;
             Toast.makeText(this, this.getString(R.string.noNom), Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void eliminarContacte (){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setMessage("Estas segur que vols borrar el contacte ? ");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }
